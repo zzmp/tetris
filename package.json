@@ -7,6 +7,7 @@
     "test": "tests"
   },
   "scripts": {
+    "start": "node index.js",
     "test": "mocha --bail --watch tests/game/tetrominos/**/* tests/game/Board.js tests/game/index.js tests/ai.js tests/ui.js"
   },
   "author": "Zach Pomerantz <zmp@umich.edu> (http://garabagne.io/)",
