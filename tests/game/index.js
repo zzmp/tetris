@@ -255,11 +255,10 @@ describe('Game', function() {
             game.advance(right)
             game.advance(right)
             game.advance(right)
-            game.advance(drop)
-            var result = game.advance()
+            var result = game.advance(drop)
             result.should.eql([
-                '          ',
-                '          ',
+                '    YY    ',
+                '    YY    ',
                 '          ',
                 '          ',
                 '          ',
