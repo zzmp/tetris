@@ -16,20 +16,48 @@ describe('ai', function() {
 
   describe('play', function() {
     describe('go as far left as possible without stacking', function() {
-      it('for __________, should drop YY________ (<,<,<,<,D)', function() {
-        ai(game.advance()).should.eql(left)
-        ai(game.advance(left)).should.eql(left)
-        ai(game.advance(left)).should.eql(left)
-        ai(game.advance(left)).should.eql(left)
-        ai(game.advance(left)).should.eql(drop)
+      it('for YY________, should do [<,<,D]', function() {
+        game.advance(left)
+        game.advance(left)
+        game.advance(left)
+        game.advance(left)
+        var board = game.advance(drop)
+        var result = JSON.stringify(ai(board))
+        result.should.eql(JSON.stringify([
+          'left', 'left', 'drop'
+        ]))
       })
-      it('for _YY_______, should drop _YYYY______ (<,D)', function() {
+      it('for YYYY______, should do [D]', function() {
+        game.advance(left)
         game.advance(left)
         game.advance(left)
         game.advance(left)
         game.advance(drop)
-        ai(game.advance()).should.eql(left)
-        ai(game.advance(left)).should.eql(drop)
+        game.advance(left)
+        game.advance(left)
+        var board = game.advance(drop)
+        var result = JSON.stringify(ai(board))
+        result.should.eql(JSON.stringify([
+          'drop'
+        ]))
+      })
+      it('for YYYYYYYY__, should do [>,>,>,>D]', function() {
+        game.advance(left)
+        game.advance(left)
+        game.advance(left)
+        game.advance(left)
+        game.advance(drop)
+        game.advance(left)
+        game.advance(left)
+        game.advance(drop)
+        game.advance(drop)
+        game.advance(right)
+        game.advance(right)
+        var board = game.advance(drop)
+        var result = JSON.stringify(ai(board))
+        result.should.eql(JSON.stringify([
+          'right', 'right', 'right', 'right', 'drop'
+        ]))
       })
     })
   })
