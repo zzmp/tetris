@@ -13,7 +13,7 @@ describe('Board', function() {
   describe('Board constructor', function() {
     it('should accept a gravity function', function() {
       var gravityFn = function gravity() {}
-      var board = new Board(gravity)
+      var board = new Board(gravityFn)
       board.gravity.should.eql(gravityFn)
     })
     it('should default to the simple gravity function', function() {
@@ -46,7 +46,7 @@ describe('Board', function() {
         it('should be initialized to null values', function() {
           board.array.forEach(function(row) {
             row.forEach(function(cell) {
-              cell.should.be('null')
+              should.equal(cell, null)
             })
           })
         })
@@ -65,7 +65,7 @@ describe('Board', function() {
             board.tetrominos.push(new O())
             var row0 = board.array[0].join(',')
             var row1 = board.array[1].join(',')
-            var row3 = board.array[1].join(',')
+            var row2 = board.array[2].join(',')
             row0.should.eql(',,,,Y,Y,,,,')
             row1.should.eql(',,,,Y,Y,,,,')
             row2.should.eql(',,,,,,,,,')
@@ -83,11 +83,12 @@ describe('Board', function() {
           gravityFn = sinon.spy()
           board.gravity = gravityFn
           board.fall()
-          spy.called.should.be.true
+          gravityFn.called.should.be.true
         })
         it('should propagate the result of the gravity function', function() {
           var result = {}
-          gravityFn = sinon.studb().returns(result)
+          gravityFn = sinon.stub().returns(result)
+          board.gravity = gravityFn
           board.fall().should.eql({})
         })
       })
