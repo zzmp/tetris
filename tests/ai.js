@@ -1,5 +1,5 @@
-var game = require('../../src/game')
-var ai = require('../../src/ai')
+var game = require('../src/game')
+var ai = require('../src/ai')
 var Game = game.Game
 var left = game.left
 var right = game.right

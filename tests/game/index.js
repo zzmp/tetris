@@ -157,7 +157,8 @@ describe('Game', function() {
                   '          ',
                   '          '
                 ].join('\n')
-            )
+              )
+            })
           })
           describe('rotate', function() {
             it('should freeze the tetronimo: easy spin!', function() {

@@ -15,7 +15,7 @@ describe('original', function() {
       ]
     }
     mockBoard = {
-      tetrominos: [mockO]
+      tetrominos: [mockO],
       board: [
         [null, null, null, null, 'Y', 'Y', null, null, null, null],
         [null, null, null, null, 'Y', 'Y', null, null, null, null],
@@ -34,18 +34,18 @@ describe('original', function() {
     describe('tetrominos to move', function() {
       it('should move all tetrominos down', function() {
         gravity.call(mockBoard)
-        tetrominos.[0].points.should.contain([1, 4])
-        tetrominos.[0].points.should.contain([1, 5])
-        tetrominos.[0].points.should.contain([2, 4])
-        tetrominos.[0].points.should.contain([2, 5])
+        tetrominos[0].points.should.contain([1, 4])
+        tetrominos[0].points.should.contain([1, 5])
+        tetrominos[0].points.should.contain([2, 4])
+        tetrominos[0].points.should.contain([2, 5])
       })
       it('should not move tetrominos if they are blocked in part', function() {
         mockBoard.array[2][5] = 'Y'
         gravity.call(mockBoard)
-        tetrominos.[0].points.should.contain([0, 4])
-        tetrominos.[0].points.should.contain([0, 5])
-        tetrominos.[0].points.should.contain([1, 4])
-        tetrominos.[0].points.should.contain([1, 5])
+        tetrominos[0].points.should.contain([0, 4])
+        tetrominos[0].points.should.contain([0, 5])
+        tetrominos[0].points.should.contain([1, 4])
+        tetrominos[0].points.should.contain([1, 5])
       })
       it('should return true', function() {
         var result = gravity.call(mockBoard)
