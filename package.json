@@ -1,0 +1,18 @@
+{
+  "name": "tetris",
+  "version": "0.0.0",
+  "description": "Tetris",
+  "main": "src/ui.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "mocha --bail --watch tests/**/*"
+  },
+  "author": "Zach Pomerantz <zmp@umich.edu> (http://garabagne.io/)",
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "^1.10.0",
+    "mocha": "^2.1.0"
+  }
+}
