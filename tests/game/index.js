@@ -239,7 +239,49 @@ describe('Game', function() {
 
         describe('clearing', function() {
           it('should clear on a full row', function() {
-            // TODO
+            game.advance(left)
+            game.advance(left)
+            game.advance(left)
+            game.advance(left)
+            game.advance(drop)
+            game.advance(left)
+            game.advance(left)
+            game.advance(drop)
+            game.advance(drop)
+            game.advance(right)
+            game.advance(right)
+            game.advance(drop)
+            game.advance(right)
+            game.advance(right)
+            game.advance(right)
+            game.advance(right)
+            game.advance(drop)
+            var result = game.advance()
+            result.should.eql([
+                '          ',
+                '          ',
+                '          ',
+                '          ',
+                '          ',
+                '          ',
+                '          ',
+                '          ',
+                '          ',
+                '          ',
+                '          ',
+                '          ',
+                '          ',
+                '          ',
+                '          ',
+                '          ',
+                '          ',
+                '          ',
+                '          ',
+                '          ',
+                '          ',
+                '          '
+              ].join('\n')
+            )
           })
         })
 
