@@ -1,4 +1,4 @@
-var tetrominos = require('../../src/board/tetrominos')
+var tetrominos = require('../../src/game/tetrominos')
 var Tetromino = tetrominos.Tetromino
 var O = tetrominos.O
 var should = require('chai').should()

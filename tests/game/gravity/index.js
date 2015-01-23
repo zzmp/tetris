@@ -1,4 +1,4 @@
-var gravity = require('../../../src/board/gravity')
+var gravity = require('../../../src/game/gravity')
 var should = require('chai').should()
 
 describe('gravity', function() {

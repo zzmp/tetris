@@ -1,6 +1,6 @@
-var Board = require('../../src/board/Board')
-var gravityFn = require('../../src/board/gravity').simple
-var O = require('../../src/board/tetrominos').O
+var Board = require('../../src/game/Board')
+var gravityFn = require('../../src/game/gravity').simple
+var O = require('../../src/game/tetrominos').O
 var should = require('chai').should()
 var sinon = require('sinon')
 

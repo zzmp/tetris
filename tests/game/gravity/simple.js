@@ -1,4 +1,4 @@
-var original = require('../../../src/board/gravity/simple')
+var original = require('../../../src/game/gravity/simple')
 var should = require('chai').should()
 
 describe('original', function() {
