@@ -99,6 +99,11 @@ describe('Board', function() {
           board.tetrominos.push(op)
           board.fall().should.be.true
         })
+        it('should not remove the push method from .tetrominos', function() {
+          var push = board.tetrominos.push
+          board.fall()
+          push.should.eql(board.tetrominos.push)
+        })
       })
 
       describe('.isAlive', function() {

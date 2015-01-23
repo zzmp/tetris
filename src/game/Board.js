@@ -19,7 +19,7 @@ function Board(gravity) {
 
   this.tetrominos.push = function(tetromino) {
     // Add tetromino to the array
-    [].push.call(self.tetrominos, tetromino)
+    ![].push.call(self.tetrominos, tetromino)
 
     // Add array to tetromino - they are tightly coupled
     tetromino.array = self.array
@@ -82,6 +82,8 @@ Board.prototype.clear = function(rows) {
       self.array[rowIx][colIx] = null
   })
 
+  var push = self.tetrominos.push
+
   self.tetrominos = self.tetrominos.filter(function(tetromino) {
     tetromino.points = tetromino.points.filter(function(point) {
       var row = point[0]
@@ -90,4 +92,6 @@ Board.prototype.clear = function(rows) {
     })
     return tetromino.points.length
   })
+
+  self.tetrominos.push = push
 }
