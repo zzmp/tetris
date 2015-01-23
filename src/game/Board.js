@@ -41,7 +41,7 @@ Board.prototype.fall = function() {
    * and it will be as if the tetrominos move _in unison_!
    */
   var result = this.tetrominos
-    .every(function(tetromino) {
+    .some(function(tetromino) {
       return tetromino.down()
     })
   return result

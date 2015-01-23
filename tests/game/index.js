@@ -115,7 +115,7 @@ describe('Game', function() {
         })
 
         describe('with commands', function() {
-          xdescribe('left', function() {
+          describe('left', function() {
             it('should move the tetromino left', function() {
               var result = game.advance(left)
               result.should.eql([
@@ -145,7 +145,7 @@ describe('Game', function() {
               )
             })
           })
-          xdescribe('right', function() {
+          describe('right', function() {
             it('should move the tetromino right', function() {
               var result = game.advance(right)
               result.should.eql([

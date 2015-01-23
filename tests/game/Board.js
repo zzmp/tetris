@@ -74,6 +74,7 @@ describe('Board', function() {
 
         beforeEach(function() {
           o = new O()
+          op = new O()
         })
 
         it('should call the down function of each tetromino on the board', function() {
@@ -90,9 +91,12 @@ describe('Board', function() {
           board.fall().should.be.false
         })
         it('should return true if any tetromino down function does', function() {
-          stub = sinon.stub().returns(true)
-          o.down = stub
+          trueStub = sinon.stub().returns(true)
+          falseStub = sinon.stub().returns(false)
+          o.down = trueStub
+          op.down = falseStub
           board.tetrominos.push(o)
+          board.tetrominos.push(op)
           board.fall().should.be.true
         })
       })
