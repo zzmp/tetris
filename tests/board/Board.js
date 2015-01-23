@@ -1,5 +1,5 @@
 var Board = require('../../src/board/Board')
-var gravityFn = require('../../src/board/gravity').original
+var gravityFn = require('../../src/board/gravity').simple
 var O = require('../../src/board/tetrominos').O
 var should = require('chai').should()
 var sinon = require('sinon')
@@ -16,7 +16,7 @@ describe('Board', function() {
       var board = new Board(gravity)
       board.gravity.should.eql(gravityFn)
     })
-    it('should default to the original gravity function', function() {
+    it('should default to the simple gravity function', function() {
       var board = new Board()
       board.gravity.should.eql(gravityFn)
     })
@@ -61,7 +61,7 @@ describe('Board', function() {
             board.tetrominos.push(o)
             board.tetrominos.should.contain(o)
           })
-          it('should add a tetromino to the underlying', function() {
+          it('should add a tetromino to the underlying array', function() {
             board.tetrominos.push(new O())
             var row0 = board.array[0].join(',')
             var row1 = board.array[1].join(',')
@@ -89,19 +89,6 @@ describe('Board', function() {
           var result = {}
           gravityFn = sinon.studb().returns(result)
           board.fall().should.eql({})
-        })
-        // This test should be moved to gravity when that suite is built out
-        it('should mirror tetromino movement on the underlying array', function() {
-          board.tetrominos.push(new O())
-          board.fall()
-          var row0 = board.array[0].join(',')
-          var row1 = board.array[0].join(',')
-          var row2 = board.array[0].join(',')
-          var row3 = board.array[0].join(',')
-          row0.should.eql(',,,,,,,,,')
-          row1.should.eql(',,,,Y,Y,,,,')
-          row2.should.eql(',,,,Y,Y,,,,')
-          row3.should.eql(',,,,,,,,,')
         })
       })
 
