@@ -42,10 +42,13 @@ describe('tetrominos', function() {
           })
           it('should describe a centered O', function() {
             o.points.should.have.length(4)
-            o.points.should.contain([0, 4])
-            o.points.should.contain([0, 5])
-            o.points.should.contain([1, 4])
-            o.points.should.contain([1, 5])
+            var points = JSON.stringify(o.points)
+            points.should.eql(JSON.stringify([
+              [0, 4],
+              [0, 5],
+              [1, 4],
+              [1, 5]
+            ]))
           })
         })
       })
