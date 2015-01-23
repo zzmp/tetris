@@ -18,14 +18,28 @@ describe('Game', function() {
       game = new Game()
     })
 
-    xdescribe('properties', function() {
-      describe('next', function() {
+    describe('properties', function() {
+      describe('commands', function() {
+        it('should have left', function() {
+          should.exist(left)
+        })
+        it('should have right', function() {
+          should.exist(right)
+        })
+        it('should have rotate', function() {
+          should.exist(rotate)
+        })
+        it('should have drop', function() {
+          should.exist(drop)
+        })
+      })
+      xdescribe('next', function() {
         it('should name a tetromino', function() {
           // For now, only O is available
           game.next.should.eql('O')
         })
       })
-      describe('score', function() {
+      xdescribe('score', function() {
         it('should start at 0', function() {
           game.score.should.eql(0)
         })
@@ -43,9 +57,9 @@ describe('Game', function() {
           it('should return a stringified board', function() {
             var result = game.advance()
             result.should.eql([
-                '    YY    ',
-                '    YY    ',
                 '          ',
+                '    YY    ',
+                '    YY    ',
                 '          ',
                 '          ',
                 '          ',
@@ -73,9 +87,9 @@ describe('Game', function() {
             var result = game.advance()
             result.should.eql([
                 '          ',
-                '    YY    ',
-                '    YY    ',
                 '          ',
+                '    YY    ',
+                '    YY    ',
                 '          ',
                 '          ',
                 '          ',
@@ -100,13 +114,13 @@ describe('Game', function() {
         })
 
         describe('with commands', function() {
-          describe('left', function() {
+          xdescribe('left', function() {
             it('should move the tetronimo left', function() {
-              var result = game.advance()
+              var result = game.advance(left)
               result.should.eql([
-                  '   YY     ',
-                  '   YY     ',
                   '          ',
+                  '   YY     ',
+                  '   YY     ',
                   '          ',
                   '          ',
                   '          ',
@@ -130,13 +144,13 @@ describe('Game', function() {
               )
             })
           })
-          describe('right', function() {
+          xdescribe('right', function() {
             it('should move the tetronimo right', function() {
-              var result = game.advance()
+              var result = game.advance(right)
               result.should.eql([
-                  '     YY   ',
-                  '     YY   ',
                   '          ',
+                  '     YY   ',
+                  '     YY   ',
                   '          ',
                   '          ',
                   '          ',
@@ -162,7 +176,7 @@ describe('Game', function() {
           })
           describe('rotate', function() {
             it('should freeze the tetronimo: easy spin!', function() {
-              var result = game.advance()
+              var result = game.advance(rotate)
               result.should.eql([
                   '    YY    ',
                   '    YY    ',
@@ -192,11 +206,11 @@ describe('Game', function() {
           })
           describe('drop', function() {
             it('should move the tetronimo to the bottom', function() {
-              var result = game.advance()
+              var result = game.advance(drop)
               result.should.eql([
                   '          ',
-                  '          ',
-                  '          ',
+                  '    YY    ',
+                  '    YY    ',
                   '          ',
                   '          ',
                   '          ',
@@ -219,6 +233,12 @@ describe('Game', function() {
                 ].join('\n')
               )
             })
+          })
+        })
+
+        describe('clearing', function() {
+          it('should clear on a full row', function() {
+            // TODO
           })
         })
 
