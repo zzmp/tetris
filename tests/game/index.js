@@ -1,3 +1,4 @@
+// These are behavioral tests (versus the mostly unit tests for other modules)
 var game = require('../../src/game')
 var Game = game.Game
 var left = game.left

@@ -1,5 +1,4 @@
 var Board = require('../../src/game/Board')
-var gravityFn = require('../../src/game/gravity').simple
 var O = require('../../src/game/tetrominos').O
 var should = require('chai').should()
 var sinon = require('sinon')
@@ -8,18 +7,6 @@ describe('Board', function() {
 
   it('should be a Board constructor', function() {
     (new Board()).should.be.instanceOf(Board)
-  })
-
-  describe('Board constructor', function() {
-    it('should accept a gravity function', function() {
-      var gravityFn = function gravity() {}
-      var board = new Board(gravityFn)
-      board.gravity.should.eql(gravityFn)
-    })
-    it('should default to the simple gravity function', function() {
-      var board = new Board()
-      board.gravity.should.eql(gravityFn)
-    })
   })
 
   describe('Board instance', function() {
@@ -77,19 +64,27 @@ describe('Board', function() {
     describe('methods', function() {
 
       describe('.fall', function() {
-        var gravityFn
+        var o
 
-        it('should call the gravity function on the board', function() {
-          gravityFn = sinon.spy()
-          board.gravity = gravityFn
-          board.fall()
-          gravityFn.called.should.be.true
+        beforeEach(function() {
+          o = new O()
         })
-        it('should propagate the result of the gravity function', function() {
-          var result = {}
-          gravityFn = sinon.stub().returns(result)
-          board.gravity = gravityFn
-          board.fall().should.eql({})
+
+        it('should call the down function of each tetromino on the board', function() {
+          spy = sinon.spy()
+          o.down = spy
+          board.fall()
+          spy.called.should.be.true
+        })
+        it('should return false if no tetromino down function does', function() {
+          stub = sinon.stub().returns(false)
+          o.down = stub
+          board.fall().should.be.false
+        })
+        it('should return true if any tetromino down function does', function() {
+          stub = sinon.stub().returns(true)
+          o.down = stub
+          board.fall().should.be.true
         })
       })
 
