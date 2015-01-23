@@ -1,4 +1,3 @@
-var defaultGravityFn = require('./gravity').simple
 var rows = 22
 var cols = 10
 
@@ -8,7 +7,6 @@ function Board(gravity) {
   var self = this
   var colIx, rowIx, row
 
-  this.gravity = gravity || defaultGravityFn
   this.array = []
   this.tetrominos = []
 
@@ -23,6 +21,9 @@ function Board(gravity) {
     // Add tetromino to the array
     [].push.call(self.tetrominos, tetromino)
 
+    // Add array to tetromino - they are tightly coupled
+    tetromino.array = self.array
+
     // Add tetromino points to underlying array
     tetromino.points.forEach(function(point) {
       var row = point[0]
@@ -34,7 +35,15 @@ function Board(gravity) {
 }
 
 Board.prototype.fall = function() {
-  var result = this.gravity.call(this)
+  /* tetrominos are added in order,
+   * so we may observe that lower tetrominos will always be first in the queue.
+   * Thus, we only need to loop the array once,
+   * and it will be as if the tetrominos move _in unison_!
+   */
+  var result = this.tetrominos
+    .every(function(tetromino) {
+      return tetromino.down()
+    })
   return result
 }
 

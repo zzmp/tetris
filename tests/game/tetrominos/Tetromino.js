@@ -1,4 +1,4 @@
-var Tetromino = require('../../src/game/tetrominos/Tetromino')
+var Tetromino = require('../../../src/game/tetrominos/Tetromino')
 var should = require('chai').should()
 var sinon = require('sinon')
 
@@ -32,13 +32,15 @@ describe('Tetromino', function() {
             [null, null, null, null, null, null, null, null, null, null]
           ]
         }
+
+        mockO.array = mockBoard.array
       })
 
       describe('left', function() {
         describe('tetromino actions', function() {
           describe('tetrominos to move', function() {
             it('should move all tetrominos left', function() {
-              mockO.left(mockBoard.array)
+              mockO.left()
               var points = JSON.stringify(mockBoard.tetrominos[0].points)
               points.should.eql(JSON.stringify([
                 [0, 3],
@@ -49,7 +51,7 @@ describe('Tetromino', function() {
             })
             it('should not move tetrominos if they are blocked in part', function() {
               mockBoard.array[1][3] = 'Y'
-              mockO.left(mockBoard.array)
+              mockO.left()
               var points = JSON.stringify(mockBoard.tetrominos[0].points)
               points.should.eql(JSON.stringify([
                 [0, 4],
@@ -59,23 +61,15 @@ describe('Tetromino', function() {
               ]))
             })
             it('should return true', function() {
-              var result = mockO.left(mockBoard.array)
+              var result = mockO.left()
               result.should.be.true
-            })
-          })
-
-          describe('no tetrominos to move', function() {
-            it('should return false', function() {
-              mockBoard.tetrominos = []
-              var result = mockO.left(mockBoard.array)
-              result.should.be.false
             })
           })
         })
 
         describe('underlying board actions', function() {
           it('should mirror tetromino movement on the underlying array', function() {
-            mockO.left(mockBoard.array)
+            mockO.left()
             var row0 = mockBoard.array[0].join(',')
             var row1 = mockBoard.array[1].join(',')
             var row2 = mockBoard.array[2].join(',')
@@ -90,7 +84,7 @@ describe('Tetromino', function() {
         describe('tetromino actions', function() {
           describe('tetrominos to move', function() {
             it('should move all tetrominos right', function() {
-              mockO.right(mockBoard.array)
+              mockO.right()
               var points = JSON.stringify(mockBoard.tetrominos[0].points)
               points.should.eql(JSON.stringify([
                 [0, 5],
@@ -101,7 +95,7 @@ describe('Tetromino', function() {
             })
             it('should not move tetrominos if they are blocked in part', function() {
               mockBoard.array[1][6] = 'Y'
-              mockO.right(mockBoard.array)
+              mockO.right()
               var points = JSON.stringify(mockBoard.tetrominos[0].points)
               points.should.eql(JSON.stringify([
                 [0, 4],
@@ -111,23 +105,15 @@ describe('Tetromino', function() {
               ]))
             })
             it('should return true', function() {
-              var result = mockO.right(mockBoard.array)
+              var result = mockO.right()
               result.should.be.true
-            })
-          })
-
-          describe('no tetrominos to move', function() {
-            it('should return false', function() {
-              mockBoard.tetrominos = []
-              var result = mockO.right(mockBoard.array)
-              result.should.be.false
             })
           })
         })
 
         describe('underlying board actions', function() {
           it('should mirror tetromino movement on the underlying array', function() {
-            mockO.right(mockBoard.array)
+            mockO.right()
             var row0 = mockBoard.array[0].join(',')
             var row1 = mockBoard.array[1].join(',')
             var row2 = mockBoard.array[2].join(',')
@@ -142,7 +128,7 @@ describe('Tetromino', function() {
         describe('tetromino actions', function() {
           describe('tetrominos to move', function() {
             it('should move all tetrominos down', function() {
-              mockO.down(mockBoard.array)
+              mockO.down()
               var points = JSON.stringify(mockBoard.tetrominos[0].points)
               points.should.eql(JSON.stringify([
                 [1, 4],
@@ -153,7 +139,7 @@ describe('Tetromino', function() {
             })
             it('should not move tetrominos if they are blocked in part', function() {
               mockBoard.array[2][5] = 'Y'
-              mockO.down(mockBoard.array)
+              mockO.down()
               var points = JSON.stringify(mockBoard.tetrominos[0].points)
               points.should.eql(JSON.stringify([
                 [0, 4],
@@ -163,23 +149,15 @@ describe('Tetromino', function() {
               ]))
             })
             it('should return true', function() {
-              var result = mockO.down(mockBoard.array)
+              var result = mockO.down()
               result.should.be.true
-            })
-          })
-
-          describe('no tetrominos to move', function() {
-            it('should return false', function() {
-              mockBoard.tetrominos = []
-              var result = mockO.down(mockBoard.array)
-              result.should.be.false
             })
           })
         })
 
         describe('underlying board actions', function() {
           it('should mirror tetromino movement on the underlying array', function() {
-            mockO.down(mockBoard.array)
+            mockO.down()
             var row0 = mockBoard.array[0].join(',')
             var row1 = mockBoard.array[1].join(',')
             var row2 = mockBoard.array[2].join(',')

@@ -57,6 +57,12 @@ describe('Board', function() {
             row1.should.eql(',,,,Y,Y,,,,')
             row2.should.eql(',,,,,,,,,')
           })
+          // They are essentially sibling classes - they are tightly coupled
+          it('should add the underlying array to the tetrimo', function() {
+            var o = new O()
+            board.tetrominos.push(o)
+            o.array.should.eql(board.array)
+          })
         })
       })
     })
@@ -73,17 +79,20 @@ describe('Board', function() {
         it('should call the down function of each tetromino on the board', function() {
           spy = sinon.spy()
           o.down = spy
+          board.tetrominos.push(o)
           board.fall()
           spy.called.should.be.true
         })
         it('should return false if no tetromino down function does', function() {
           stub = sinon.stub().returns(false)
           o.down = stub
+          board.tetrominos.push(o)
           board.fall().should.be.false
         })
         it('should return true if any tetromino down function does', function() {
           stub = sinon.stub().returns(true)
           o.down = stub
+          board.tetrominos.push(o)
           board.fall().should.be.true
         })
       })

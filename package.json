@@ -7,7 +7,7 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "mocha --bail --watch tests/game/tetrominos.js tests/game/gravity/**/* tests/game/Board.js tests/game/index.js tests/ai.js tests/ui.js"
+    "test": "mocha --bail --watch tests/game/tetrominos/**/* tests/game/Board.js tests/game/index.js tests/ai.js tests/ui.js"
   },
   "author": "Zach Pomerantz <zmp@umich.edu> (http://garabagne.io/)",
   "license": "MIT",

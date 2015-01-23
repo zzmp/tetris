@@ -1,5 +1,5 @@
-var Tetromino = require('../../src/game/tetrominos/Tetomino')
-var O = require('../../src/game/tetrominos/O')
+var Tetromino = require('../../../src/game/tetrominos/Tetromino')
+var O = require('../../../src/game/tetrominos/O')
 var should = require('chai').should()
 var sinon = require('sinon')
 

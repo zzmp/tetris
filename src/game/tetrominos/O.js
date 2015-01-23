@@ -1,11 +1,6 @@
-module.exports = {
-  Tetromino: Tetromino,
-  O: O
-}
+var Tetromino = require('./Tetromino')
 
-function Tetromino() {
-
-}
+module.exports = O
 
 function O() {
   Tetromino.call(this)
