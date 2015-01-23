@@ -47,7 +47,7 @@ function move(increment, isVertical) {
       j += increment
       if (isVertical) row = j, col = k
       else row = k, col = j
-      return self.array[row][col] === null
+      return self.array[row] && self.array[row][col] === null
     })
   ) {
     // then move the tetromino down

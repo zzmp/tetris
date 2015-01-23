@@ -24,30 +24,39 @@ function Game() {
   this.board.tetrominos.push(this.currentTetromino)
 }
 
-Game.prototype.advance = function(command) {
-  if (command) {
-    if (command === left) {
+Game.prototype.advance = advance
 
-    } else if (command === right) {
+function advance(command) {
+  var clearRows
 
-    } else if (command === rotate) {
-      this.currentTetromino.rotate()
-    } else if (command === drop) {
-      while(this.board.fall()) {}
-      this.currentTetromino = new O()
-      this.board.tetrominos.push(this.currentTetromino)
-    } else {
-      throw new Error('Unknown command')
-    }
-
+  if (command === left) {
+    if (!this.currentTetromino.left())
+      return advance.call(this)
+  } else if (command === right) {
+    if (!this.currentTetromino.right())
+      return advance.call(this)
+  } else if (command === drop) {
+    while(this.board.fall()) {/* noop */}
+    return advance.call(this)
+  } else if (command === rotate) {
+    this.currentTetromino.rotate()
     return stringifyBoard.call(this) // easy spin!
   }
 
   var result = this.board.fall()
   if (!result) {
+    // Clear any full rows
+    clearRows = this.board.check()
+    while (clearRows.length) {
+      this.board.clear(clearRows)
+      while (this.board.fall()) { /* noop */}
+      clearRows = this.board.check()
+    }
+    // Introduce a new tetromino
     this.currentTetromino = new O()
     this.board.tetrominos.push(this.currentTetromino)
   }
+  // Redraw the board
   return stringifyBoard.call(this)
 }
 

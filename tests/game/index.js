@@ -52,7 +52,7 @@ describe('Game', function() {
 
     describe('methods', function() {
       describe('advance', function() {
-        // Note: the only possible tetronimo is O, so it is used for all tests
+        // Note: the only possible tetromino is O, so it is used for all tests
         //   whew! major simplification
         describe('without commands', function() {
           it('should return a stringified board', function() {
@@ -116,7 +116,7 @@ describe('Game', function() {
 
         describe('with commands', function() {
           xdescribe('left', function() {
-            it('should move the tetronimo left', function() {
+            it('should move the tetromino left', function() {
               var result = game.advance(left)
               result.should.eql([
                   '          ',
@@ -146,7 +146,7 @@ describe('Game', function() {
             })
           })
           xdescribe('right', function() {
-            it('should move the tetronimo right', function() {
+            it('should move the tetromino right', function() {
               var result = game.advance(right)
               result.should.eql([
                   '          ',
@@ -176,7 +176,7 @@ describe('Game', function() {
             })
           })
           describe('rotate', function() {
-            it('should freeze the tetronimo: easy spin!', function() {
+            it('should freeze the tetromino: easy spin!', function() {
               var result = game.advance(rotate)
               result.should.eql([
                   '    YY    ',
@@ -206,12 +206,12 @@ describe('Game', function() {
             })
           })
           describe('drop', function() {
-            it('should move the tetronimo to the bottom', function() {
+            it('should move the tetromino to the bottom', function() {
               var result = game.advance(drop)
               result.should.eql([
+                  '    YY    ',
+                  '    YY    ',
                   '          ',
-                  '    YY    ',
-                  '    YY    ',
                   '          ',
                   '          ',
                   '          ',
